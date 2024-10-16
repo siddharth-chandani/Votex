@@ -7,6 +7,7 @@ import { useNavigate  } from 'react-router-dom';
 const Navbar = () => {
   const {token,userInfo,signOut}=useContext(AuthContext)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
   const navigate = useNavigate();
 
 
@@ -75,7 +76,7 @@ const Navbar = () => {
             type="button"
             className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
             aria-controls="navbar-sticky"
-            aria-expanded="false"
+            onClick={() => setIsNavOpen((prev) => !prev)}
           >
             <span className="sr-only">Open main menu</span>
             <svg
@@ -96,7 +97,7 @@ const Navbar = () => {
           </button>
         </div>
         <div
-          className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+          className={`items-center justify-between  w-full md:flex md:w-auto md:order-1 ${isNavOpen?"":"hidden"}`}
           id="navbar-sticky"
         >
           <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white  ">
